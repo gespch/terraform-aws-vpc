@@ -18,7 +18,7 @@ libraries {
     }
  
     terraform {
-        enforce_deploy   = false
+        //enforce_deploy   = false
         working_directory = "examples/simple-vpc"   
         file_name_env   = "terraform.tfvars.json"
     }
