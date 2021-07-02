@@ -12,47 +12,37 @@ libraries {
     }
     
    vault{
-        path="dso_iac_cloudbees"
-        working_directory = "cloudbees"
+        path="dso_iac_example"
+        working_directory = "examples/simple-vpc"
         file_name_env   = "terraform.tfvars.json"
     }
  
     terraform {
-        enforce_deploy   = false
-        working_directory = "cloudbees"   
+        //enforce_deploy   = true
+        working_directory = "examples/simple-vpc"   
         file_name_env   = "terraform.tfvars.json"
-     secrets{
-           someTextCredential{
-           type = "text"
-           name = "VARIABLE_NAME"
-           id = "jenkins_sonar"
-           }
-        }
     }
  
    
 }
  
 application_environments {
-    dev{
-        aws {
-            credentials_id = '<credentials>'
-            region  = 'us-east-2'
-            stage   = 'DESA'
+       dev{
+        terraform {
+            secrets{
+               someUsernamePasswordCredential{
+                    type = "usernamePassword"
+                    usernameVar = "USER"
+                    passwordVar = "PASS"
+                    id = "giovanni_expinoza_aws_personal"
+                }
+            }
         }
     }
     test{
-        aws {
-            credentials_id = '<credentials>'
-            region  = 'us-east-2'
-            stage   = 'TEST'
-        }
+       
     }
     prod{
-        aws { 
-            region  = 'us-east-1'
-            stage   = 'PROD'
-            profile = 'prod-profile'
-        }
+
     }
 }
