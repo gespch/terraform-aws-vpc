@@ -1,9 +1,12 @@
 provider "aws" {
   region = local.region
+  access_key = var.access_key
+  secret_key = var.secret_key
+  #token      = var.token 
 }
 
 locals {
-  region = "us-east-2"
+  region = "eu-west-1"
 }
 
 ################################################################################
